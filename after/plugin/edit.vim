@@ -10,7 +10,7 @@
 
 
 
-if &compatible || exists(':Edit')
+if &compatible || exists(':XEdit')
     finish
 endif
 let s:save_cpo = &cpoptions
@@ -48,7 +48,7 @@ endfunction
 
 
 
-" :Edit {fileName}
-command! -nargs=? -complete=file Edit call s:RelativeEdit(<f-args>)
+" :XEdit {fileName}
+command! -nargs=? -complete=file XEdit call s:RelativeEdit(<f-args>)
 
 let &cpoptions = s:save_cpo
