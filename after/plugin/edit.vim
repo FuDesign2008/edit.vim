@@ -73,9 +73,6 @@ function FileProbabilityCompare(a, b)
     return probabilityA > probabilityB ? -1 : 1
 endfunction
 
-" 优先级
-" 1. 名字完全匹配
-" 2. 名字模糊匹配
 "@param {array} files
 "@param {string} fileName
 "@return {string}
@@ -127,11 +124,7 @@ function! s:FuzzyFindFile(baseFolder, fileName)
     let files = s:ParseToFiles(result)
 
     let found = s:FuzzyFind(files, a:fileName)
-    if empty(found)
-        return ''
-    endif
-    let fullPath = a:baseFolder . '/' . found
-    return fullPath
+    return found
 endfunction
 
 "@param {string} fileName
@@ -139,7 +132,20 @@ endfunction
 function! s:FindFileRelative(fileName)
     let folder = expand('%:p:h')
     let found = s:FuzzyFindFile(folder, a:fileName)
-    return found
+
+    if empty(found)
+        return ''
+    endif
+
+    let fullPath = folder . '/' . found
+    let cwd = getcwd() . '/'
+
+    if stridx(fullPath, cwd) == 0
+        let startIndex = strlen(cwd)
+        return strpart(fullPath, startIndex)
+    endif
+
+    return fullPath
 endfunction
 
 function! s:FindFileCwd(fileName)
