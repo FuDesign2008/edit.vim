@@ -4,5 +4,7 @@ Edit file that is relative with current file
 
 ## Usage
 
--   `:XEdit`: edit the folder that contains current file
--   `:XEdit fileName`: edit the file that is relative with current file
+-   `:REdit`: edit the folder that contains current file
+-   `:REdit fileName`: edit the file that is relative with current file, support fuzzy find
+-   `:XEdit fileName`: edit the file that is base current working directory, support fuzzy find
+-   `:XEdit`: edit current working directory
