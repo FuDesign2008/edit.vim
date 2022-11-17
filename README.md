@@ -2,6 +2,8 @@
 
 Edit file that is relative with current file
 
+## Deprecated, use https://github.com/FuDesign2008/only.vim instead
+
 ## Usage
 
 -   `:REdit`: edit the folder that contains current file
